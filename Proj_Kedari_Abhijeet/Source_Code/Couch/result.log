@@ -1,0 +1,6 @@
+Nov 28, 2015 7:05:49 PM CouchTest put
+INFO: PUT Time 448
+Nov 28, 2015 7:05:50 PM CouchTest get
+INFO: GET Time 377
+Nov 28, 2015 7:05:51 PM CouchTest remove
+INFO: REMOVE Time 976
