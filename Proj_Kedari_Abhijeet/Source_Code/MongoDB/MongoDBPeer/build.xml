@@ -1,0 +1,166 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<project default="run" name="peer">
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile" depends="clean">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/Peer.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="Peer"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar">
+        <java jar="build/jar/Peer.jar" fork="true"/>
+    </target>
+
+<!--DHT Evaluation Testing -->
+    <target name="DHTcompile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes"/>
+    </target>
+
+    <target name="DHTjar" depends="DHTcompile">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/EvalClass.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="EvalClass"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="DHTrun" depends="DHTjar">
+        <java jar="build/jar/EvalClass.jar" fork="true"/>
+    </target>
+
+
+<!--MongoDB Evaluation Testing -->
+    <target name="Mongocompile" >
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes">
+		<classpath>
+			<pathelement path="lib/mongo-java-driver-3.1.1.jar" /> 
+		</classpath>
+	</javac>
+    </target>
+
+    <target name="Mongojar" depends="Mongocompile">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/MongoTest.jar" basedir="build/classes">
+		<zipgroupfileset dir="lib" includes="mongo-java-driver-3.1.1.jar" />
+            <manifest>
+                <attribute name="Main-Class" value="MongoTest"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="Mongorun" depends="Mongojar">
+        <java jar="build/jar/MongoTest.jar" fork="true"/>
+    </target>
+
+<!-- Redis Evaluation Testing-->
+    <target name="Rediscompile" >
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes">
+		<classpath>
+			<pathelement path="lib/jedis-2.8.0.jar" /> 
+		</classpath>
+	</javac>
+    </target>
+
+    <target name="Redisjar" depends="Rediscompile">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/RedisTest.jar" basedir="build/classes">
+		<zipgroupfileset dir="lib" includes="jedis-2.8.0.jar" />
+            <manifest>
+                <attribute name="Main-Class" value="RedisTest"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="Redisrun" depends="Redisjar">
+        <java jar="build/jar/RedisTest.jar" fork="true"/>
+    </target>
+
+
+
+<!-- Couch Evaluation Testing-->
+    <target name="Couchcompile" >
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes">
+		<classpath>
+			<pathelement  path="lib/apache-commons-lang.jar" />
+			<pathelement path="lib/commons-cli-1.2.jar" /> 
+			<pathelement path="lib/commons-codec-1.9.jar" />
+			<pathelement path="lib/commons-httpclient-3.1.jar" /> 
+			<pathelement path="lib/commons-logging-1.2.jar" />
+			<pathelement path="lib/couchdb4j-0.1.2.jar" /> 
+			<pathelement path="lib/ezmorph-1.0.6.jar" />
+			<pathelement path="lib/fluent-hc-4.5.1.jar" /> 
+			<pathelement path="lib/httpclient-4.5.1.jar" />
+			<pathelement path="lib/httpclient-cache-4.5.1.jar" /> 
+			<pathelement path="lib/httpclient-win-4.5.1.jar" />
+			<pathelement path="lib/httpcore-4.4.3.jar" /> 
+			<pathelement path="lib/httpcore-4.4.4.jar" />
+			<pathelement path="lib/httpcore-ab-4.4.4.jar" /> 
+			<pathelement path="lib/httpcore-nio-4.4.4.jar" />
+			<pathelement path="lib/httpmime-4.5.1.jar" /> 
+			<pathelement path="lib/jna-4.1.0.jar" />
+			<pathelement path="lib/jna-platform-4.1.0.jar" /> 
+			<pathelement path="lib/json-lib-2.0-jdk15.jar" />
+			<pathelement path="lib/org.apache.commons.beanutils.jar" />
+			<pathelement path="lib/org.apache.commons.collections.jar" />
+		</classpath>
+	</javac>
+    </target>
+
+    <target name="Couchjar" depends="Couchcompile">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/CouchTest.jar" basedir="build/classes">
+        	
+        	
+            <manifest>
+                <attribute name="Main-Class" value="CouchTest"/>
+            </manifest>
+	    <fileset dir="/home/abhijeet/workspace/Couch/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/org.apache.commons.collections.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/org.apache.commons.beanutils.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/json-lib-2.0-jdk15.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/jna-platform-4.1.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/jna-4.1.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/httpmime-4.5.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/httpcore-nio-4.4.4.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/httpcore-ab-4.4.4.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/httpcore-4.4.4.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/httpcore-4.4.3.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/httpclient-win-4.5.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/httpclient-cache-4.5.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/httpclient-4.5.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/fluent-hc-4.5.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/ezmorph-1.0.6.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/couchdb4j-0.1.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/commons-logging-1.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/commons-httpclient-3.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/commons-codec-1.9.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/commons-cli-1.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/abhijeet/workspace/Couch/lib/apache-commons-lang.jar"/>
+
+        </jar>
+    </target>
+
+    <target name="Couchrun" depends="Couchjar">
+        <java jar="build/jar/CouchTest.jar" fork="true"/>
+    </target>
+
+</project>
+
+

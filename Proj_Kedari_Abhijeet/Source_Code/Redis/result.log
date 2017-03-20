@@ -1,0 +1,6 @@
+Nov 28, 2015 2:53:49 PM RedisTest put
+INFO: PUT Time 62
+Nov 28, 2015 2:53:49 PM RedisTest get
+INFO: GET Time 41
+Nov 28, 2015 2:53:49 PM RedisTest remove
+INFO: REMOVE Time 33

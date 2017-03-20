@@ -1,0 +1,6 @@
+Nov 28, 2015 11:20:38 AM MongoTest put
+INFO: PUT Time 232
+Nov 28, 2015 11:20:38 AM MongoTest get
+INFO: GET Time 85
+Nov 28, 2015 11:20:38 AM MongoTest remove
+INFO: REMOVE Time 66
